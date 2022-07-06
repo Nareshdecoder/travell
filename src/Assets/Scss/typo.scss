@@ -1,0 +1,301 @@
+@import "./Config.scss";
+
+.h1 {
+  font-family: $theme-font-family;
+  font-size: 54px !important;
+  font-weight: 700 !important;
+}
+.h2 {
+  font-family: $theme-font-family;
+  font-size: 42px !important;
+  font-weight: 500 !important;
+}
+.h3 {
+  font-family: $theme-font-family;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+}
+.h4 {
+  font-family: $theme-font-family;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+}
+.h4-web {
+  font-family: $theme-font-family;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+.h5-web {
+  font-family: $theme-font-family;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+}
+.h5 {
+  font-family: $theme-font-family;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+.h6 {
+  font-family: $theme-font-family;
+  font-size: 16px !important;
+  font-weight: 500;
+}
+.h6-web {
+  font-family: $theme-font-family;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+.h7 {
+  font-family: $theme-font-family;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+.h7-web {
+  font-family: $theme-font-family;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+.h8 {
+  font-family: $theme-font-family;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+.h8-400 {
+  font-family: $theme-font-family;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+.label-input {
+  font-family: $theme-font-family;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+.p-sm {
+  font-family: $theme-font-family;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+}
+.footer-ul {
+  list-style: none;
+  text-align: left;
+}
+
+.banner {
+  width: 100%;
+  height: 500px;
+  background-image: url(../Images/wallpaper.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.banners {
+  width: 100%;
+  height: 500px;
+  background-image: url(../Images/abouts.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.txt-left {
+  height: 500px;
+  text-align: left;
+}
+.bck-img {
+  height: auto;
+  width: 400px;
+  border: 2px solid rgba(230, 223, 223, 0.699);
+  padding: 5px;
+}
+.bck-img-three {
+  height: auto;
+  width: 500px;
+  border: 2px solid rgba(230, 223, 223, 0.699);
+  padding: 5px;
+}
+.bck-img-two {
+  height: auto;
+  position: absolute;
+  width: 250px;
+  top: 200px;
+  right: -30px;
+}
+.img-overlay {
+  height: 350px;
+}
+.crd-img {
+  width: 200px;
+  //   border: 2px solid rgba(230, 223, 223, 0.699);
+  background: #f5f0f0f1;
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
+    0px 1px 2px rgba(16, 24, 40, 0.06);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: flex-start;
+  padding: 20px;
+  p {
+    margin-bottom: 0 !important;
+  }
+}
+
+.trp-img {
+  width: 32%;
+  height: 300px;
+  background-image: url(../Images/trip.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  // background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  p {
+    padding: 0 20px 20px 20px;
+  }
+}
+.trp-img:nth-child(1) {
+  background-image: url(../Images/ittaly.jpg);
+}
+.trp-img:nth-child(2) {
+  background-image: url(../Images/aus.png);
+}
+.trp-img:nth-child(3) {
+  background-image: url(../Images/uk.jpg);
+}
+.trp-img:nth-child(4) {
+  background-image: url(../Images/nature.jpg);
+}
+.trp-img:nth-child(5) {
+  background-image: url(../Images/manchester.jpg);
+}
+.trp-img:nth-child(6) {
+  background-image: url(../Images/united.jpg);
+}
+.trp-img:nth-child(7) {
+  background-image: url(../Images/kingdom.jpg);
+}
+.book_img {
+  height: 250px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  // background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.card {
+  background-color: #e8e8e8f5;
+  border: 1px solid #d4d1d1;
+  padding: 10px;
+}
+.price {
+  margin: 0 0 0 auto;
+  display: block;
+}
+.card_days {
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 30px;
+  position: absolute;
+  right: 0px;
+  bottom: -18px;
+}
+.trp-img1 {
+  width: 32%;
+  height: 300px;
+  background-image: url(../Images/trip1.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  // background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  p {
+    padding: 0 20px 20px 20px;
+  }
+}
+
+.trp-img2 {
+  width: 32%;
+  height: 300px;
+  background-image: url(../Images/trip2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  // background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  p {
+    padding: 0 20px 20px 20px;
+  }
+}
+.formik {
+  position: absolute;
+  left: 270px;
+  top: 30px;
+}
+.footer {
+  width: 100%;
+  height: 500px;
+  background-image: url(../Images/footer.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.image-width {
+  width: 50px;
+}
+.mt-6 {
+  margin-top: 80px !important;
+}
+.mt-8 {
+  margin-top: 100px !important;
+}
+.review-btn {
+  height: auto;
+  text-align: left;
+}
+.TestimonialBorder {
+  border: solid 5px #f7eec6;
+}
+.bgblue {
+  background-color: #034ea2;
+}
+.TestimonialBorder {
+  border: solid 5px #ffde2f;
+}
+.testimonial_desc {
+  font-weight: 400;
+  font-size: 30px;
+  font-family: Nunito Sans;
+}
+
+.testimonial_auth {
+  font-weight: 700;
+  font-size: 24px;
+  font-family: Nunito Sans;
+}
+.testimonial_content {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Nunito Sans;
+}
+.testimonialTitle {
+  position: absolute;
+  top: -7%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  background-color: #034ea2;
+  padding: 0 50px;
+}
+.customPadding {
+  padding: 20px;
+}
+.book_btn {
+  width: 113px;
+  margin: 0 0 0 auto;
+}
