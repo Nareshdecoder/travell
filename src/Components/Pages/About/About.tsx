@@ -3,8 +3,15 @@ import Header from "../../header/Hearder";
 import Button from "../../Core/S4-button/Button";
 import fall from "../../../Assets/Images/fall.png";
 import nature from "../../../Assets/Images/nature.png";
+import waterfalls from "../../../Assets/Images/waterfalls.jpg";
+import sightseeing from "../../../Assets/Images/sightseeing.jpg";
 import hotel from "../../../Assets/Images/hotel.svg";
 import traveller from "../../../Assets/Images/traveller.png";
+import fire from "../../../Assets/Images/fire.png";
+import guide from "../../../Assets/Images/guide.png";
+import medical from "../../../Assets/Images/medical.png";
+import accomadation from "../../../Assets/Images/accomadation.png";
+import transport from "../../../Assets/Images/transport.png";
 import { Accordion } from "react-bootstrap";
 import Footer from "../../Footer/Footer";
 function About() {
@@ -13,26 +20,32 @@ function About() {
     {
       title: "Foods and Drinks",
       offer: "we provide you a traditional foods",
+      image: <img src={hotel} height="40px" width="40px" />,
     },
     {
       title: "Transportation",
       offer: "We provide Good trasport facilities",
+      image: <img src={transport} height="40px" width="40px" />,
     },
     {
       title: "Accomadation",
       offer: "We offers a city best hotel",
+      image: <img src={accomadation} height="40px" width="40px" />,
     },
     {
       title: "Medical",
       offer: "We also provide medial insurance",
+      image: <img src={medical} height="40px" width="40px" />,
     },
     {
       title: "Tour guide",
       offer: "We provide Guide in your pocket",
+      image: <img src={guide} height="40px" width="40px" />,
     },
     {
       title: "Camp Fire",
       offer: "We make ur night as memories with fire",
+      image: <img src={fire} height="40px" width="40px" />,
     },
   ];
   const reviews = [
@@ -89,11 +102,11 @@ function About() {
           <div className="container">
             <div className="row">
               <div className="col-lg-6 d-flex justify-content-center txt-left flex-column ps-5">
-                <div className="text-primary p-5">
+                <div className="text-primary p-5 mt-4 ">
                   What does voyaging offer?
                 </div>
-                <div className="text-dark h4">Explore world with us</div>
-                <div className="text-brandcolor3 mt-2">
+
+                <div className="text-brandcolor3 ">
                   The user-friendly MakeMyTrip App and website make it easy for
                   enthusiastic travellers to plan and book a holiday simply at
                   the click of a button. Just use the filters and select the
@@ -125,8 +138,8 @@ function About() {
             <div className="row">
               <div className="col-lg-6 p-5">
                 <div className="position-relative img-overlay">
-                  <img src={fall} alt="side1" className="bck-img" />
-                  <img src={nature} alt="side1" className="bck-img-two" />
+                  <img src={sightseeing} alt="side1" className="bck-img" />
+                  <img src={waterfalls} alt="side1" className="bck-img-two" />
                 </div>
               </div>
               <div className="col-lg-6 d-flex justify-content-center txt-left flex-column ps-5">
@@ -156,15 +169,21 @@ function About() {
                 <div className="text-dark h2 ">Benifits of voyaging</div>
               </div>
               <div>
-                <div className="d-flex flex-wrap justify-content-between w-100">
+                <div className="d-flex flex-wrap justify-content-between w-100 mt-3">
                   {benfits.map((data) => (
                     <>
-                      <div className="d-flex mt-3 ">
-                        <div>
-                          <img src={hotel} className="img-fluid image-width" />
+                      <div className="d-flex mt-3 w-33">
+                        <div className="img-fluid image-width ">
+                          {data.image}
+                          {/* <img
+                            src={transport}
+                            className="img-fluid image-width"
+                          /> */}
                         </div>
-                        <div className="  mt-3 ms-3">{data.title}</div>
-                        <div className="  mt-5  ">{data.offer}</div>
+                        <div className="ms-4 text-start">
+                          <div className="text-danger">{data.title}</div>
+                          <div className="text-success">{data.offer}</div>
+                        </div>
                       </div>
                     </>
                   ))}

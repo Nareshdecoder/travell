@@ -7,12 +7,16 @@ import nature from "../../Assets/Images/nature.jpg";
 import wallpic from "../../Assets/Images/wallpic.jpg";
 import Footer from "../Footer/Footer";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Tour() {
   let location = window.location.href;
 
   const { id } = useParams();
   console.log("location", id);
+  let countryData = useSelector(
+    (state: any) => state.TripReducer?.countryResponse
+  );
   const desitination = [
     {
       name: "Netherland",
@@ -54,7 +58,7 @@ function Tour() {
         " It is an island country in the southwestern Pacific Ocean. It consists of two main landmasses—the North Island and the South Island —and over 700 smaller islands. It is the sixth-largest island country by area, covering 268,021 square kilometres.",
     },
   ];
-  const filter = desitination.filter((desitination) => desitination.id == id);
+  const filter = countryData.filter((countryData: any) => countryData.id == id);
   console.log("first", filter);
   return (
     <>
@@ -63,9 +67,15 @@ function Tour() {
         <div className="container">
           <div className="row align-items-center txt-left">
             <div className="col-12 justify-content-center d-flex">
-              {filter.map((itemns) => (
-                <div className="d-flex">
-                  <div className="h1 text-secondary ">About Your Place</div>
+              {filter.map((itemns: any) => (
+                <div>
+                  <div className="h1 text-white me-5">
+                    About Your Dream Place
+                  </div>
+                  <div className="h1 text-orange ms-5 mt-5 ">
+                    {" "}
+                    {itemns.name}
+                  </div>
                 </div>
               ))}
             </div>
@@ -73,20 +83,22 @@ function Tour() {
           </div>
         </div>
       </div>
-      <Carousel>
-        <Carousel.Item>
-          <img className="d-block w-100" src={nature} alt="First slide" />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={wallmac} alt="Second slide" />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={wallpic} alt="Third slide" />
-        </Carousel.Item>
-      </Carousel>
+      <div className="mt-5">
+        <Carousel>
+          <Carousel.Item>
+            <img className="d-block w-100" src={nature} alt="First slide" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img className="d-block w-100" src={wallmac} alt="Second slide" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img className="d-block w-100" src={wallpic} alt="Third slide" />
+          </Carousel.Item>
+        </Carousel>
+      </div>
       <div className="container">
         <div className="row ">
-          {filter.map((items) => (
+          {filter.map((items: any) => (
             <div className="col-4 bg-blue mt-6">
               <div className="mt-3">
                 <div className="h5 mt-5 text-dark">Destination</div>
@@ -111,11 +123,13 @@ function Tour() {
             <div className="">
               <div className="text-primary ">About this place</div>
               <div className="text-dark h4">Explore world with us</div>
-              {filter.map((data) => (
+              {filter.map((data: any) => (
                 <div>
                   <div className="text-brandcolor3 mt-2">
                     {data.description}
+                    {console.log("datawhy", data.Why)}
                   </div>
+                  <div className="text-brandcolor3 mt-5">{data.Why}</div>
                 </div>
               ))}
             </div>

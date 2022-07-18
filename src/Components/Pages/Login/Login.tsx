@@ -1,46 +1,43 @@
 import { Container, Row, Col } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { postUserLogin } from "../../Redux/Action/loginAction";
 
-// import { Redirect } from "react-router-dom";
-// import { createBrowserHistory } from "history";
 import styled from "styled-components";
 import LoginBg from "../../../Assets/login.png";
 import FormBg from "../../../Assets/signuo.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { constraintValidation } from "../../../Utils/Validation/Validation";
+import { useNavigate } from "react-router-dom";
+import { saveToSession } from "../../../Utils/SessionStorage/sessionStorage";
 
-// const LoginName = "kiran";
-// const LoginPassword = "kirankumar";
-// const history = createBrowserHistory();
+function LoginForm(props: any) {
+  const dispatch: any = useDispatch();
 
-function LoginForm() {
-  const [data, setData] = useState({ email: "", password: "" });
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState(null);
+  const [submit, setSubmit] = useState(false);
+  let loginData = useSelector(
+    (state: any) => state.LoginReducer?.loginResponse
+  );
 
-  // const saved = localStorage.getItem("Data");
-  // const initialValue = JSON.parse(saved)[0];
-
-  // const inputName = initialValue.name;
-  // const inputPassword = initialValue.password;
-
-  // console.log(inputName);
-
+  useEffect(() => {
+    console.log("useeffect", loginData);
+    if (loginData?.token && loginData?.success) {
+      props.handleLogin(loginData);
+    }
+    setError(loginData);
+  }, [loginData]);
   const handleSubmit = (e: any) => {
     e.preventDefault();
-
-    let saved: any = localStorage.getItem("Data");
-    let userList = JSON.parse(saved) || [];
-    let result = userList.filter((iteam: any) => iteam.email === data.email);
-
-    if (result.length > 0) {
-      // window.location.href = "/usertable";
-      if (result[0].password === data.password) {
-        window.location.href = "/usertable";
-      } else {
-        alert("Password entered is incorrect");
-      }
-    } else {
-      alert("Sign up first");
+    setSubmit(true);
+    if (!constraintValidation(data.email) && data.password) {
+      dispatch(postUserLogin(data));
     }
   };
-
+  console.log("erroerrrr", error);
   return (
     <StyledLogin>
       <Container>
@@ -58,6 +55,7 @@ function LoginForm() {
                     setData({ ...data, [e.target.name]: e.target.value })
                   }
                 />
+
                 <StyledInput
                   name="password"
                   type="password"
@@ -67,6 +65,9 @@ function LoginForm() {
                     setData({ ...data, [e.target.name]: e.target.value })
                   }
                 />
+                <div className="text-danger">
+                  {!loginData?.token && loginData?.message}
+                </div>
                 <div>
                   <StyledButton type="submit" id="submit" className="loginbtn">
                     LOGIN

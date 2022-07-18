@@ -33,6 +33,7 @@ $dark5: #f2f4f7;
 $dark1: #475467;
 $criteria: #f2f4fa;
 $blue: #c3e8f0;
+$orange: #800080;
 $theme-colors: (
   "primary": $primary,
   "secondary": $secondary,
@@ -44,6 +45,7 @@ $theme-colors: (
   "darkgrey": $darkgrey,
   "darkblack": $darkblack,
   "blue": $blue,
+  "orange": $orange,
 );
 $custom-theme-colors: (
   "highlight1": $highlight1,
@@ -60,6 +62,7 @@ $custom-theme-colors: (
   "darkgrey": $darkgrey,
   "darkblack": $darkblack,
   "blue": $blue,
+  "orange": $orange,
 );
 $theme-colors: map-merge($theme-colors, $custom-theme-colors);
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");

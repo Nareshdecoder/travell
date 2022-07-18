@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../header/Hearder";
 import fall from "../../../Assets/Images/fall.png";
 import nature from "../../../Assets/Images/nature.png";
@@ -10,10 +10,18 @@ import passport3 from "../../../Assets/Images/passport3.svg";
 import Footer from "../../Footer/Footer";
 import Button from "../../Core/S4-button/Button";
 import { isTemplateSpan } from "typescript";
+import { getCountryAction, getTripAction } from "../../Redux/Action/tripAction";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 function Home() {
   let navigate = useNavigate();
+  const dispatch: any = useDispatch();
   const [customerReview, setCustomerReview] = useState(false);
+  let reviewData = useSelector((state: any) => state.TripReducer?.tripResponse);
+  let countryData = useSelector(
+    (state: any) => state.TripReducer?.countryResponse
+  );
+
   const reviews = [
     {
       name: "Naresh",
@@ -61,6 +69,11 @@ function Home() {
       Why: "Who could fail to love a city whose streets are made of water, whose buses are boats, and where the songs of gondoliers linger in the air? It is a magic city, and its major attraction to tourists is the city itself",
     },
   ];
+  useEffect(() => {
+    dispatch(getTripAction());
+    dispatch(getCountryAction());
+  }, []);
+  useEffect(() => {}, [countryData]);
 
   return (
     <>
@@ -153,15 +166,15 @@ function Home() {
           <div className="col p-5">
             <div className="d-flex flex-wrap w-100 justify-content-between ">
               <div className="d-flex flex-wrap justify-content-between w-100  ">
-                {country.map((data) => (
+                {countryData?.map((data: any) => (
                   <div
                     className=" w-33 trp-img mt-4"
                     onClick={() => navigate("/tour/" + data.id)}
                   >
-                    <div className=" text-white h2 mt-2 ">{data.name}</div>
+                    <div className=" text-white h2 mt-2 ">{data?.name}</div>
                     {/* <div >{data.img}</div> */}
-                    <p className="text-white h4 mt-2">{data.Place}</p>
-                    <p className="text-white h6 mt-2">{data.Why}</p>
+                    <p className="text-white h4 mt-2">{data?.Place}</p>
+                    <p className="text-white h6 mt-2">{data?.Why}</p>
                   </div>
                 ))}
               </div>
@@ -177,18 +190,24 @@ function Home() {
               <div className="text-dark h4 p-2">Customer Review</div>
               {!customerReview && (
                 <div>
-                  <div className=" text-primary">{reviews[0].name}</div>
-                  <div className="h5 text-dark">{reviews[0].email}</div>
-                  <div className="h5 text-dark">{reviews[0].description}</div>
+                  <div className=" text-primary">
+                    {reviewData?.data[0].name}
+                  </div>
+                  <div className="h5 text-dark">
+                    {reviewData?.data[0].email}
+                  </div>
+                  <div className="h5 text-dark">
+                    {reviewData?.data[0].descrption}
+                  </div>
                 </div>
               )}
 
               {customerReview &&
-                reviews.map((items) => (
+                reviewData?.data.map((items: any) => (
                   <div className="customPadding  mt-3 TestimonialBorder position-relative">
                     <p className="testimonialTitle text-white">{items.name}</p>
                     <h5>{items.email}</h5>
-                    <p>-{items.description}</p>
+                    <p>{items.descrption}</p>
                   </div>
                 ))}
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../Core";
 import Footer from "../Footer/Footer";
 import trip from "../../Assets/Images/trip.png";
@@ -7,9 +7,16 @@ import { MdFlight, MdOutlineNordicWalking } from "react-icons/md";
 import { RiHotelFill } from "react-icons/ri";
 import { AiFillCar } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getPackagesAction } from "../Redux/Action/tripAction";
 
 function Trips() {
   let navigate = useNavigate();
+  const dispatch: any = useDispatch();
+  let packageData = useSelector(
+    (state: any) => state.TripReducer?.pakagesResponse
+  );
+  console.log("packageData", packageData);
   const country = [
     {
       id: "1",
@@ -142,18 +149,20 @@ function Trips() {
   ];
   const [checked, setChecked] = useState(false);
   const [filter, setFilter] = useState<any>([]);
-
+  useEffect(() => {
+    dispatch(getPackagesAction());
+    console.log("packageData", packageData);
+  }, []);
   const handleCheckbox = (e: any) => {
     const values = e.target.value;
     setChecked(e.target.checked);
     const valuess = values.split("/");
-    // setValue(valuess);
+
     filterPrice(valuess);
-    // console.log("checkbox", value, checked);
   };
 
   const filterPrice = (valuess: number[]) => {
-    let data = country.filter((item) => {
+    let data = packageData.filter((item: any) => {
       console.log(
         "=-=-==-=-=-=-=-data=-=-=-=-=-=-=-=-=-filter",
         item.price,
@@ -288,12 +297,12 @@ function Trips() {
                       <span>{items.name}</span>
                       <Button
                         title="Book now"
-                        onClick={() => navigate("/payment/" + items.name)}
+                        onClick={() => navigate(`/payment/${items.id}`)}
                       />
                     </div>
                   </div>
                 ))
-              : country.map((items) => (
+              : packageData.map((items: any) => (
                   <div className=" mt-5 card">
                     <div className="h6 text-start">visa+flexi-package</div>
                     <div className="h4 text-start">Discover {items.name}</div>
@@ -348,7 +357,7 @@ function Trips() {
                       <span className="text-dark h4 mb-0">₹ {items.price}</span>
                       <Button
                         title="Book now"
-                        onClick={() => navigate("/payment/ " + items.name)}
+                        onClick={() => navigate(`/payment/${items.id}`)}
                       />
                     </div>
                   </div>

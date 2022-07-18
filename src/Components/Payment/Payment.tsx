@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
+import { iteratorSymbol } from "immer/dist/internal";
 function Payment() {
   let navigate = useNavigate();
   interface Window {
@@ -14,7 +16,15 @@ function Payment() {
   console.log("locationssss", id);
   const [values, setValues] = useState({});
   const [amount, setAmount] = useState<any>("");
-  // const payMent = desitination.filter((desitination) => desitination.id == id);
+  const [pay, setPay] = useState(false);
+  const [minAmount, setMinAmount] = useState<any>("");
+  let packageData = useSelector(
+    (state: any) => state.TripReducer?.pakagesResponse
+  );
+  console.log("packageDatadata", packageData);
+  const handleForm = () => {
+    setPay(true);
+  };
   const validate = (values: any) => {
     const errors = {
       firstName: "",
@@ -47,7 +57,14 @@ function Payment() {
     } else if (!/^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/.test(values.adhar)) {
       errors.adhar = "Invalid adhar number";
     }
-
+    if (formik) {
+      let PayValid = Object.values(formik.values).filter(
+        (value: any) => value == ""
+      );
+      if (PayValid.length == 0) {
+        setPay(true);
+      }
+    }
     return errors;
   };
   const formik = useFormik({
@@ -58,12 +75,11 @@ function Payment() {
       adhar: "",
     },
     validate,
-    onSubmit: (values) => {
-      console.log("values", values);
-    },
+    onSubmit: (values) => {},
   });
   const notify = () => toast("Please enter the Amount!");
   const notifySuccess = () => toast("Payment done successfully");
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (amount === "") {
@@ -77,8 +93,8 @@ function Payment() {
         name: "Travell Agency",
         description: "for testing purpose",
         handler: function () {
-          // alert(response.razorpay_payment_id);
           notifySuccess();
+          navigate("/success");
         },
         prefill: {
           name: "Travel Agency",
@@ -106,16 +122,32 @@ function Payment() {
   const { name } = useParams();
   console.log("namess", name);
 
+  useEffect(() => {
+    if (packageData.length > 0) {
+      const filter = packageData.find((packages: any) => {
+        if (packages.id == id) {
+          setMinAmount(packages);
+          setAmount(packages.price);
+          console.log("setMinAmount", packages);
+          return packages;
+        }
+      });
+    }
+  }, [packageData]);
+
   return (
     <div>
       <div className="container-fluid p-0">
         <div className="bg-brandcolor3 text-white mt-2 p-5 h3">
           <div> Payment Page</div>
-          <div className="text-danger">Your Place :{name}</div>
+          <div className=" mt-3">Destination :{minAmount.name}</div>
         </div>
 
-        <div className="mt-5 w-50 ">
-          <form onSubmit={formik.handleSubmit}>
+        <div className="mt-5 ">
+          <form
+            onSubmit={formik.handleSubmit}
+            className="justify-content-center "
+          >
             <div className="d-flex justify-content-center position-relative gap-5">
               <label htmlFor="firstName">First Name</label>
               <input
@@ -180,36 +212,41 @@ function Payment() {
                 <div className="text-danger formik">{formik.errors.adhar}</div>
               ) : null}
             </div>
+            <div className="d-flex justify-content-center ml-8 mt-4">
+              <Button type="submit" onClick={validate}>
+                Submit
+              </Button>
 
-            <Button type="submit" className="mt-5 ms-5">
-              Submit
-            </Button>
-
-            <Button
-              type="submit"
-              className="mt-5  ms-5"
-              onClick={() => navigate("/")}
-            >
-              cancel
-            </Button>
+              <Button
+                type="submit"
+                className="  ms-5 bg-danger"
+                onClick={() => navigate("/trips")}
+              >
+                cancel
+              </Button>
+            </div>
           </form>
         </div>
-        <div className="bg-brandcolor3 mt-5 container-fluid p-0 h-100">
-          <div className="h4 p-3">Bill desk</div>
-          <input
-            type="text"
-            className="mt-3"
-            placeholder="Enter amount "
-            value={amount}
-            onChange={(e: any) => setAmount(e.target.value)}
-          />
-          <br />
-          <br />
-          <Button onClick={handleSubmit} className="mb-5">
-            Procced to pay
-          </Button>
-          <ToastContainer />
-        </div>
+        {pay && (
+          <div className="bg-brandcolor3 mt-5 container-fluid p-0 h-100">
+            <div className="h4 p-3">Bill desk</div>
+            <label className="me-1">Amount to be Paid:</label>
+            <input
+              type="text"
+              className="mt-3"
+              placeholder="Enter amount "
+              value={amount}
+              readOnly={true}
+              onChange={(e: any) => setAmount(e.target.value)}
+            />
+            <br />
+            <br />
+            <Button onClick={handleSubmit} className="mb-5">
+              Procced to pay
+            </Button>
+            <ToastContainer />
+          </div>
+        )}
       </div>
     </div>
   );
