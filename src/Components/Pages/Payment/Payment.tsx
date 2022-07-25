@@ -7,14 +7,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 import { iteratorSymbol } from "immer/dist/internal";
+import { Payments } from "../Interface/Interface";
 function Payment() {
   let navigate = useNavigate();
-  interface Window {
-    example: any;
-  }
+
   const { id } = useParams();
   console.log("locationssss", id);
-  const [values, setValues] = useState({});
+  let initial = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    adhar: "",
+  };
+  const [values, setValues] = useState<Payments>(initial);
   const [amount, setAmount] = useState<any>("");
   const [pay, setPay] = useState(false);
   const [minAmount, setMinAmount] = useState<any>("");
@@ -22,10 +27,8 @@ function Payment() {
     (state: any) => state.TripReducer?.pakagesResponse
   );
   console.log("packageDatadata", packageData);
-  const handleForm = () => {
-    setPay(true);
-  };
-  const validate = (values: any) => {
+
+  const validate = () => {
     const errors = {
       firstName: "",
       lastName: "",

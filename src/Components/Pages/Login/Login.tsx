@@ -37,7 +37,7 @@ function LoginForm(props: any) {
       dispatch(postUserLogin(data));
     }
   };
-  console.log("erroerrrr", error);
+
   return (
     <StyledLogin>
       <Container>
@@ -50,6 +50,7 @@ function LoginForm(props: any) {
                   type="email"
                   className="user"
                   placeholder="Email"
+                  data-testid="email"
                   value={data.email}
                   onChange={(e) =>
                     setData({ ...data, [e.target.name]: e.target.value })
@@ -61,6 +62,7 @@ function LoginForm(props: any) {
                   type="password"
                   placeholder="Enter your password"
                   value={data.password}
+                  data-testid="password"
                   onChange={(e) =>
                     setData({ ...data, [e.target.name]: e.target.value })
                   }

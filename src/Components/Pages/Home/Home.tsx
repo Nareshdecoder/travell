@@ -13,6 +13,7 @@ import { isTemplateSpan } from "typescript";
 import { getCountryAction, getTripAction } from "../../Redux/Action/tripAction";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Item, Review, Trips } from "../Interface/Interface";
 function Home() {
   let navigate = useNavigate();
   const dispatch: any = useDispatch();
@@ -166,7 +167,7 @@ function Home() {
           <div className="col p-5">
             <div className="d-flex flex-wrap w-100 justify-content-between ">
               <div className="d-flex flex-wrap justify-content-between w-100  ">
-                {countryData?.map((data: any) => (
+                {countryData?.map((data: Item) => (
                   <div
                     className=" w-33 trp-img mt-4"
                     onClick={() => navigate("/tour/" + data.id)}
@@ -203,7 +204,7 @@ function Home() {
               )}
 
               {customerReview &&
-                reviewData?.data.map((items: any) => (
+                reviewData?.data.map((items: Review) => (
                   <div className="customPadding  mt-3 TestimonialBorder position-relative">
                     <p className="testimonialTitle text-white">{items.name}</p>
                     <h5>{items.email}</h5>

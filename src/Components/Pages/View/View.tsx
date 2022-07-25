@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
-import wallmac from "../../../Assets/Images/wallmac.jpg";
-import nature from "../../../Assets/Images/nature.jpg";
-import wallpic from "../../../Assets/Images/wallpic.jpg";
 import waterfalls from "../../../Assets/Images/waterfalls.jpg";
+import wallpic from "../../../Assets/Images/wallpic.jpg";
+import nature from "../../../Assets/Images/nature.jpg";
+import wallpc from "../../../Assets/Images/wallpc.jpg";
+import united from "../../../Assets/Images/united.jpg";
 import sightseeing from "../../../Assets/Images/sightseeing.jpg";
 import { Button } from "../../Core";
 import { AiFillCar } from "react-icons/ai";
@@ -48,7 +49,7 @@ function View() {
     filter.length > 0
       ? days.slice(0, parseInt(filter[0].day))
       : days.slice(0, 5);
-  console.log(dayschedule, "dayschedule");
+
   return (
     <>
       <div className="container-fluid">
@@ -64,12 +65,12 @@ function View() {
               <Carousel.Item className="Caraoosal">
                 <img
                   className="d-block w-100"
-                  src={nature}
+                  src={united}
                   alt="Second slide"
                 />
               </Carousel.Item>
               <Carousel.Item className="Caraoosal">
-                <img className="d-block w-100" src={nature} alt="Third slide" />
+                <img className="d-block w-100" src={wallpc} alt="Third slide" />
               </Carousel.Item>
             </Carousel>
           </div>
@@ -82,12 +83,12 @@ function View() {
           </div>
           <div className="col-2 p-1">
             <img
-              src={sightseeing}
+              src={wallpic}
               alt="side1"
               className="img-fluid Caraoosal_fit"
             />
             <img
-              src={sightseeing}
+              src={waterfalls}
               alt="side1"
               className="img-fluid Caraoosal_fit mt-2"
             />
@@ -108,12 +109,15 @@ function View() {
               </li>
               <div className=" flex-wrap  justify-content-start col-11 ">
                 <div className=" bg-red1  border table-col text-start d-flex align-items-center">
-                  <span className="mt-2"> {items.night} Nights Stay</span>
+                  <span className="mt-2 ms-2 h4">
+                    {" "}
+                    {items.night} Nights Stay
+                  </span>
                 </div>
 
                 {dayschedule.map((data: any, key) => (
-                  <div className="d-flex gap-5 align-items-center  col-10  border border-primary  table-col">
-                    <div>
+                  <div className="d-flex gap-5 align-items-center  col-10  card  table-col">
+                    <div className="h5 text-primary d-flex text-start">
                       {"Day"}
                       {key + 1}-{data}
                     </div>
@@ -132,10 +136,10 @@ function View() {
               </div>
             </div>
             <div className="mt-4 card_prize col-3 ">
-              <span className="text-start prizeout d-flex">62,000</span>
+              <span className="text-start prizeout d-flex">72,000</span>
               <div className="mt-3 d-flex gap-2 ">
-                <span className="text-dark h4 mb-0">{items.price}</span>
-                <p> per person*</p>
+                <span className="text-dark ger h4 mb-0 ">{items.price}</span>
+                <p className="text-danger"> per person*</p>
               </div>
               <p className="text-start">*Excluding applicable taxes</p>
               <Button

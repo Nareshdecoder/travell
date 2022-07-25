@@ -9,6 +9,7 @@ import { AiFillCar } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPackagesAction } from "../../Redux/Action/tripAction";
+import { Package } from "../Interface/Interface";
 
 function Trips() {
   let navigate = useNavigate();
@@ -162,7 +163,7 @@ function Trips() {
   };
 
   const filterPrice = (valuess: number[]) => {
-    let data = packageData.filter((item: any) => {
+    let data = packageData.filter((item: Package) => {
       console.log(
         "=-=-==-=-=-=-=-data=-=-=-=-=-=-=-=-=-filter",
         item.price,
@@ -241,7 +242,7 @@ function Trips() {
           <div className="col-10  d-flex  flex-wrap gap-5">
             {console.log("=-=-==-=-=-=-=-data=-=-=-=-=-=-=-=-=-", filter)}
             {checked && filter.length
-              ? filter.map((items: any) => (
+              ? filter.map((items: Package) => (
                   <div className=" mt-5 card">
                     <div className="h6 text-start">visa+flexi-package</div>
                     <div className="h4 text-start">Discover {items.name}</div>
@@ -302,7 +303,7 @@ function Trips() {
                     </div>
                   </div>
                 ))
-              : packageData.map((items: any) => (
+              : packageData.map((items: Package) => (
                   <div className=" mt-5 card">
                     <div className="h6 text-start">visa+flexi-package</div>
                     <div className="h4 text-start">Discover {items.name}</div>

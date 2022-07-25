@@ -278,8 +278,9 @@ function About() {
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>How to book trip</Accordion.Header>
                       <Accordion.Body>
-                        Please check www.voyaging.com and go to trip and book
-                        your fav place.
+                        Please check&nbsp;
+                        <a className="text-primary">www.voyaging.com</a>
+                        &nbsp;and go to trip and book your fav place.
                       </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
