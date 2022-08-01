@@ -3,8 +3,10 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { removeToSession } from "../../Utils/SessionStorage/sessionStorage";
 import Button from "../Core/S4-button/Button";
+// import useCoduToggle from "use-toggles";
 // import Button from "../Core/S4-button/Button";
 function Header() {
+  // const [isOn, setIsOn] = useCoduToggle();
   let navigate = useNavigate();
   const handleLogout = () => {
     removeToSession("loggedData");
@@ -41,6 +43,7 @@ function Header() {
             </div>
           </Container>
         </Navbar>
+        {/* <button onClick={() => setIsOn(!isOn)}>Is active {`${isOn}`}</button> */}
       </div>
     </>
   );

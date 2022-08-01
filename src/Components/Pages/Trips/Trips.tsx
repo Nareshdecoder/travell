@@ -185,7 +185,7 @@ function Trips() {
   return (
     <>
       <Header />
-      <div className="container-fluid banner">
+      <div className="container-fluid banner1">
         <div className="container">
           <div className="row align-items-center txt-left">
             <div className="col-lg-6">
@@ -370,7 +370,7 @@ function Trips() {
         <div className="text-white mt-2">About Us</div>
         <div className="text-white h4 mt-2">Explore world with us</div>
         <div className="text-white mt-2">
-          MakeMyTrip.com, India's leading online travel company, has a profound
+          Voyaging, India's leading online travel company, has a profound
           understanding of Indian consumers travel needs and preferences. It
           offers a wide range of holiday packages in India and across the world,
           catering to various segments of travellers. While the dynamic or
