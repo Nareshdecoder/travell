@@ -78,7 +78,7 @@ function About() {
   return (
     <>
       <Header />
-      <div className="container-fluid banner">
+      <div className="container-fluid banners">
         <div className="container">
           <div className="row align-items-center txt-left">
             <div className="col-lg-6">

@@ -165,6 +165,7 @@ function Home() {
       <div className="container">
         <div className="row">
           <div className="col p-5">
+            <div className="text-dark h3">Click to See Your Package</div>
             <div className="d-flex flex-wrap w-100 justify-content-between ">
               <div className="d-flex flex-wrap justify-content-between w-100  ">
                 {countryData?.map((data: Item) => (
@@ -243,7 +244,7 @@ function Home() {
         <div className="text-white mt-4">About Us</div>
         <div className="text-white h4 mt-2">Explore world with us</div>
         <div className="text-white mt-2">
-          MakeMyTrip.com, India's leading online travel company, has a profound
+          Voyaging,India's leading online travel company, has a profound
           understanding of Indian consumers travel needs and preferences. It
           offers a wide range of holiday packages in India and across the world,
           catering to various segments of travellers. While the dynamic or
