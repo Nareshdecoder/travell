@@ -8,22 +8,19 @@ export const RouteData = [
   {
     path: "/home",
     element: Home,
-    auth: false,
-    isSide: true,
+
     name: "Homepage",
   },
   {
     path: "/login",
     element: LoginForm,
-    auth: false,
-    isSide: true,
+
     name: "LoginForm",
   },
   {
     path: "/about",
     element: About,
-    auth: false,
-    isSide: true,
+
     name: "About",
   },
 ];

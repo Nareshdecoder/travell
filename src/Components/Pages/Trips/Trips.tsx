@@ -215,14 +215,18 @@ function Trips() {
             <div className="h4 text-primary">Destination</div>
             <div className="h6 text-danger ">Price</div>
             <div className="me-4">
+              <div className="text-warning">Silver Package</div>
+
               <input
                 type="checkbox"
                 value="10000/20000"
                 onChange={handleCheckbox}
               />
+
               <label className="ms-2"> 10000 to 20000</label>
             </div>
             <div className="mt-2 me-4">
+              <div className="text-warning">Gold Package</div>
               <input
                 type="checkbox"
                 value="30000/40000"
@@ -231,6 +235,7 @@ function Trips() {
               <label className="ms-2"> 30000 to 40000</label>
             </div>
             <div className="mt-2 me-4">
+              <div className="text-warning">Platinum Package</div>
               <input
                 type="checkbox"
                 value="50000/80000"

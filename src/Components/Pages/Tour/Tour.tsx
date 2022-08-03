@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import { Button } from "../../Core";
+
 import Header from "../../header/Hearder";
 import wallmac from "../../../Assets/Images/wallmac.jpg";
 import nature from "../../../Assets/Images/nature.jpg";
@@ -9,7 +9,7 @@ import Footer from "../../Footer/Footer";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Item } from "../Interface/Interface";
-import * as UseCoduToggle from "naresh-npm-app";
+
 function Tour() {
   const { id } = useParams();
   let countryData = useSelector(
@@ -63,7 +63,6 @@ function Tour() {
   return (
     <>
       <Header />
-      <UseCoduToggle />
       <div>
         <Carousel>
           <Carousel.Item>

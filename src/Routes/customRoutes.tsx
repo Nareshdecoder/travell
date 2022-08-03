@@ -34,7 +34,7 @@ const CustomRoutes = () => {
   }, []);
   const sessionData = (data: any) => {
     setLogged(data);
-    console.log("l");
+
     saveToSession("loggedData", data);
     navigate("/home");
   };

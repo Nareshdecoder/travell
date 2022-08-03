@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
-import { iteratorSymbol } from "immer/dist/internal";
+
 import { Payments } from "../Interface/Interface";
 function Payment() {
   let navigate = useNavigate();
@@ -61,9 +61,7 @@ function Payment() {
       errors.adhar = "Invalid adhar number";
     }
     if (formik) {
-      let PayValid = Object.values(formik.values).filter(
-        (value: any) => value == ""
-      );
+      let PayValid = Object.values(values).filter((value: any) => value == "");
       if (PayValid.length == 0) {
         setPay(true);
       }
@@ -78,6 +76,7 @@ function Payment() {
       adhar: "",
     },
     validate,
+
     onSubmit: (values) => {},
   });
   const notify = () => toast("Please enter the Amount!");
@@ -116,8 +115,8 @@ function Payment() {
     }
   };
   const handleChange = (event: any) => {
-    setValues((prevValues) => ({
-      ...prevValues,
+    setValues((values) => ({
+      ...values,
       // we use the name to tell Formik which key of `values` to update
       [event.target.name]: event.target.value,
     }));
@@ -141,7 +140,7 @@ function Payment() {
   return (
     <div>
       <div className="container-fluid p-0">
-        <div className="bg-brandcolor3 text-white mt-2 p-5 h3">
+        <div className="bg-brandcolor3 text-dark mt-2 p-5 h3">
           <div> Payment Page</div>
           <div className=" mt-3">Destination :{minAmount.name}</div>
         </div>
@@ -158,8 +157,8 @@ function Payment() {
                 name="firstName"
                 type="text"
                 placeholder="Enter FirstName"
-                onChange={formik.handleChange}
-                value={formik.values.firstName}
+                onChange={handleChange}
+                value={values.firstName}
                 onBlur={formik.handleBlur}
               />
               {formik.errors.firstName ? (
@@ -176,9 +175,9 @@ function Payment() {
                 name="lastName"
                 type="text"
                 placeholder="Enter LastName"
-                onChange={formik.handleChange}
+                onChange={handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.lastName}
+                value={values.lastName}
               />
               {formik.errors.lastName ? (
                 <div className="text-danger formik">
@@ -195,9 +194,9 @@ function Payment() {
                 name="email"
                 type="email"
                 placeholder="Enter Email"
-                onChange={formik.handleChange}
+                onChange={handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.email}
+                value={values.email}
               />
               {formik.errors.email ? (
                 <div className="text-danger formik">{formik.errors.email}</div>
@@ -211,9 +210,9 @@ function Payment() {
                 name="adhar"
                 type="text"
                 placeholder="Exnter Number as Aadhar Format"
-                onChange={formik.handleChange}
+                onChange={handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.adhar}
+                value={values.adhar}
               />
               {formik.errors.adhar ? (
                 <div className="text-danger formik">{formik.errors.adhar}</div>
@@ -234,6 +233,7 @@ function Payment() {
             </div>
           </form>
         </div>
+
         {pay && (
           <div className="bg-brandcolor3 mt-5 container-fluid p-0 h-100">
             <div className="h4 p-3">Bill desk</div>
