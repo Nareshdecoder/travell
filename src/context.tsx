@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { createContext } from "react";
 
 export const text = () => {
   return <div>context</div>;

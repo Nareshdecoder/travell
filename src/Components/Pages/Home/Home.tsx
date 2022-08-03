@@ -9,7 +9,7 @@ import passport4 from "../../../Assets/Images/passport4.svg";
 import passport3 from "../../../Assets/Images/passport3.svg";
 import Footer from "../../Footer/Footer";
 import Button from "../../Core/S4-button/Button";
-import { isTemplateSpan } from "typescript";
+
 import { getCountryAction, getTripAction } from "../../Redux/Action/tripAction";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

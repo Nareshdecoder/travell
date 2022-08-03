@@ -7,8 +7,6 @@ import LoginBg from "../../../Assets/login.png";
 import FormBg from "../../../Assets/signuo.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { constraintValidation } from "../../../Utils/Validation/Validation";
-import { useNavigate } from "react-router-dom";
-import { saveToSession } from "../../../Utils/SessionStorage/sessionStorage";
 
 function LoginForm(props: any) {
   const dispatch: any = useDispatch();
@@ -62,7 +60,7 @@ function LoginForm(props: any) {
                   type="password"
                   placeholder="Enter your password"
                   value={data.password}
-                  data-testid="password"
+                  data-testid="Password"
                   onChange={(e) =>
                     setData({ ...data, [e.target.name]: e.target.value })
                   }
@@ -71,7 +69,12 @@ function LoginForm(props: any) {
                   {!loginData?.token && loginData?.message}
                 </div>
                 <div>
-                  <StyledButton type="submit" id="submit" className="loginbtn">
+                  <StyledButton
+                    type="submit"
+                    id="submit"
+                    className="loginbtn"
+                    data-testid="Button"
+                  >
                     LOGIN
                   </StyledButton>
                 </div>

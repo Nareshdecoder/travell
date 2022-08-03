@@ -175,10 +175,6 @@ function About() {
                       <div className="d-flex mt-3 w-33">
                         <div className="img-fluid image-width ">
                           {data.image}
-                          {/* <img
-                            src={transport}
-                            className="img-fluid image-width"
-                          /> */}
                         </div>
                         <div className="ms-4 text-start">
                           <div className="text-danger">{data.title}</div>

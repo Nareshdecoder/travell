@@ -1,7 +1,7 @@
 import React from "react";
 
 function Select(props: any) {
-  const { options, value, onClick, tittle, noBorder, className } = props;
+  const { options, value, onClick, tittle, className } = props;
   return (
     <>
       <span className={"p-9 border"}>

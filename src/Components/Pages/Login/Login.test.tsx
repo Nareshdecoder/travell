@@ -1,11 +1,38 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { store } from "../../../../src/Store";
+import { Provider } from "react-redux";
+import {
+  fireEvent,
+  render as rtlrender,
+  screen,
+  cleanup,
+} from "@testing-library/react";
 import Login from "./Login";
-test("renders input", async () => {
-  render(<Login />);
-  const email: any = await screen.findByTestId("email");
-  const password: any = await screen.findByTestId("password");
-  fireEvent.change(email, { target: { value: "email" } });
-  fireEvent.change(password, { target: { value: "password" } });
-  expect(email.value).toBe("email");
-  expect(password.value).toBe("password");
+
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+Enzyme.configure({ adapter: new Adapter() });
+
+const render = (component: any) =>
+  rtlrender(<Provider store={store}>{component}</Provider>);
+afterEach(cleanup);
+describe("Login", () => {
+  it("render Login component Without crashing", () => {
+    render(<Login />);
+  });
+  it("check  Login having input email", () => {
+    const { getByTestId } = render(<Login />);
+    const headerElement = getByTestId("email");
+    expect(headerElement.textContent).toBe("");
+  });
+  it("check  Login having input password", () => {
+    const { getByTestId } = render(<Login />);
+    const headerElement = getByTestId("Password");
+    expect(headerElement.textContent).toBe("");
+  });
+  it("check  Login having custom button Login", () => {
+    const { getByTestId } = render(<Login />);
+    const headerElement = getByTestId("Button");
+    expect(headerElement.textContent).toBe("LOGIN");
+  });
 });
