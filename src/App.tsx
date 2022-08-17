@@ -12,9 +12,10 @@ import { BrowserRouter } from "react-router-dom";
 function App() {
   let example: any = useContext(Context);
   useEffect(() => {
-    let res = example
-      ?.api1()
-      .then(() => console.log("test-------------->", res));
+    let res =
+      example &&
+      example.api1 &&
+      example.api1().then(() => console.log("test-------------->", res));
   }, []);
 
   return (
