@@ -248,7 +248,7 @@ function Payment() {
             />
             <br />
             <br />
-            <Button onClick={handleSubmit} className="mb-5">
+            <Button onClick={handleSubmit} className="mb-5 ms-5">
               Procced to pay
             </Button>
             <ToastContainer />

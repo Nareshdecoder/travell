@@ -3,4 +3,5 @@ export const Endpoint = {
   COUNTRY: "/country",
   PACKAGE: "/packages",
   LOGIN: "/signin",
+  SIGNUP: "/signup",
 };

@@ -1,7 +1,7 @@
 import { store } from "../../../../src/Store";
 import { Provider } from "react-redux";
 import { render as rtlrender, cleanup } from "@testing-library/react";
-import Login from "./Login";
+import Register from "./Register";
 import { BrowserRouter as Router } from "react-router-dom";
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
@@ -18,21 +18,21 @@ const render = (component: any) =>
 afterEach(cleanup);
 describe("Login", () => {
   it("render Login component Without crashing", () => {
-    render(<Login />);
+    render(<Register />);
   });
   it("check  Login having input email", () => {
-    const { getByTestId } = render(<Login />);
+    const { getByTestId } = render(<Register />);
     const headerElement = getByTestId("email");
     expect(headerElement.textContent).toBe("");
   });
   it("check  Login having input password", () => {
-    const { getByTestId } = render(<Login />);
+    const { getByTestId } = render(<Register />);
     const headerElement = getByTestId("Password");
     console.log(headerElement, "headerElement");
     expect(headerElement.textContent).toBe("");
   });
   it("check  Login having custom button Login", () => {
-    const { getByTestId } = render(<Login />);
+    const { getByTestId } = render(<Register />);
     const headerElement = getByTestId("Button");
     expect(headerElement.textContent).toBe("LOGIN");
   });

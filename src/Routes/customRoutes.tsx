@@ -7,6 +7,8 @@ import About from "../Components/Pages/About/About";
 import Home from "../Components/Pages/Home/Home";
 import LoginForm from "../Components/Pages/Login/Login";
 import Payment from "../Components/Pages/Payment/Payment";
+import RegiusterForm from "../Components/Pages/Regisrter/Register";
+
 import Success from "../Components/Pages/Success/Success";
 import Tour from "../Components/Pages/Tour/Tour";
 import Trips from "../Components/Pages/Trips/Trips";
@@ -58,7 +60,7 @@ const CustomRoutes = () => {
         path="*"
         element={<LoginForm handleLogin={(data: any) => setLogged(data)} />}
       />
-
+      {/* <Route path="/register" element={<RegiusterForm />} /> */}
       {(logged || loggedData) && (
         <>
           <Route path="/home" element={<Home />} />

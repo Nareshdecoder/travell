@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 import { removeToSession } from "../../../Utils/SessionStorage/sessionStorage";
 
 export const AxiosClient = axios.create({

@@ -7,31 +7,36 @@ import LoginBg from "../../../Assets/login.png";
 import FormBg from "../../../Assets/signuo.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { constraintValidation } from "../../../Utils/Validation/Validation";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { postUserSignin } from "../../Redux/Action/signUpaction";
 
-function LoginForm(props: any) {
+function RegiusterForm(props: any) {
+  let navigate = useNavigate();
+  const dispatch: any = useDispatch();
+
   const [data, setData] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState(null);
   const [submit, setSubmit] = useState(false);
-  let loginData = useSelector(
-    (state: any) => state.LoginReducer?.loginResponse
+  let signUpData = useSelector(
+    (state: any) => state.SignUpReducer?.signUpResponse
   );
-  const dispatch: any = useDispatch();
+
   useEffect(() => {
-    console.log("useeffect", loginData);
-    if (loginData?.token && loginData?.success) {
-      props.handleLogin(loginData);
+    console.log("useeffectsignUpData", signUpData);
+    if (signUpData?.success) {
+      props.handleLogin(signUpData);
     }
-    setError(loginData);
-  }, [loginData]);
+    setError(signUpData);
+  }, [signUpData]);
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setSubmit(true);
     if (!constraintValidation(data.email) && data.password) {
-      dispatch(postUserLogin(data));
+      dispatch(postUserSignin(data));
+      navigate("/");
     }
   };
 
@@ -42,6 +47,15 @@ function LoginForm(props: any) {
           <Col md={6}>
             <div className="form">
               <StyledForm onSubmit={handleSubmit}>
+                <StyledInput
+                  name="name"
+                  type="name"
+                  className="user"
+                  placeholder="Name"
+                  onChange={(e) =>
+                    setData({ ...data, [e.target.name]: e.target.value })
+                  }
+                />
                 <StyledInput
                   name="email"
                   type="email"
@@ -64,8 +78,8 @@ function LoginForm(props: any) {
                     setData({ ...data, [e.target.name]: e.target.value })
                   }
                 />
-                <div className="text-danger">
-                  {!loginData?.token && loginData?.message}
+                <div className="text-danger mb-3">
+                  {!signUpData?.status && signUpData?.message}
                 </div>
                 <div>
                   <StyledButton
@@ -73,14 +87,9 @@ function LoginForm(props: any) {
                     id="submit"
                     className="loginbtn"
                     data-testid="Button"
-                    value=""
                   >
-                    LOGIN
+                    REGISTER
                   </StyledButton>
-                </div>
-                <div className="mt-2">
-                  Dont have account Please click here to{" "}
-                  <Link to="/register">Register</Link>
                 </div>
               </StyledForm>
             </div>
@@ -228,4 +237,4 @@ const StyledButton = styled.button`
   }
 `;
 
-export default LoginForm;
+export default RegiusterForm;
