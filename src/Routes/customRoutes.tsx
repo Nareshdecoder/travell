@@ -1,9 +1,9 @@
 import { createBrowserHistory } from "history";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
-import About from "../Components/Pages/About/About";
+//import About from "../Components/Pages/About/About";
 import Home from "../Components/Pages/Home/Home";
 import LoginForm from "../Components/Pages/Login/Login";
 import Payment from "../Components/Pages/Payment/Payment";
@@ -22,6 +22,7 @@ import {
 const history = createBrowserHistory();
 
 const CustomRoutes = () => {
+  const About = lazy(() => import("../Components/Pages/About/About"));
   const navigate = useNavigate();
   const [logged, setLogged] = useState(null);
   const [lock, setLock] = useState(false);
@@ -45,34 +46,40 @@ const CustomRoutes = () => {
     return <Component isLoggedData={setLogged} />;
   };
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <LoginForm
-            handleLogin={(data: any) => {
-              sessionData(data);
-            }}
+    <>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LoginForm
+                handleLogin={(data: any) => {
+                  sessionData(data);
+                }}
+              />
+            }
           />
-        }
-      />
-      <Route
-        path="*"
-        element={<LoginForm handleLogin={(data: any) => setLogged(data)} />}
-      />
-      {/* <Route path="/register" element={<RegiusterForm />} /> */}
-      {(logged || loggedData) && (
-        <>
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/tour/:id" element={<Tour />} />
-          <Route path="/trips" element={<Trips />} />
-          <Route path="/payment/:id" element={<Payment />} />
-          <Route path="/success" element={<Success />} />
-          <Route path="/view/:id" element={<View />} />
-        </>
-      )}
-    </Routes>
+          <Route
+            path="*"
+            element={<LoginForm handleLogin={(data: any) => setLogged(data)} />}
+          />
+          <Route path="/register" element={<RegiusterForm />} />
+          {(logged || loggedData) && (
+            <>
+              <Route path="/home" element={<Home />} />
+
+              <Route path="/about" element={<About />} />
+
+              <Route path="/tour/:id" element={<Tour />} />
+              <Route path="/trips" element={<Trips />} />
+              <Route path="/payment/:id" element={<Payment />} />
+              <Route path="/success" element={<Success />} />
+              <Route path="/view/:id" element={<View />} />
+            </>
+          )}
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 export default CustomRoutes;
