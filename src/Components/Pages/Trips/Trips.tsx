@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "../Core";
-import Footer from "../Footer/Footer";
-import trip from "../../Assets/Images/trip.png";
-import Header from "../header/Hearder";
+import { Button } from "../../Core";
+import Footer from "../../Footer/Footer";
+import trip from "../../../Assets/Images/trip.png";
+import Header from "../../header/Hearder";
 import { MdFlight, MdOutlineNordicWalking } from "react-icons/md";
 import { RiHotelFill } from "react-icons/ri";
 import { AiFillCar } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getPackagesAction } from "../Redux/Action/tripAction";
+import { getPackagesAction } from "../../Redux/Action/tripAction";
+import { Package } from "../Interface/Interface";
 
 function Trips() {
   let navigate = useNavigate();
@@ -162,7 +163,7 @@ function Trips() {
   };
 
   const filterPrice = (valuess: number[]) => {
-    let data = packageData.filter((item: any) => {
+    let data = packageData.filter((item: Package) => {
       console.log(
         "=-=-==-=-=-=-=-data=-=-=-=-=-=-=-=-=-filter",
         item.price,
@@ -184,7 +185,7 @@ function Trips() {
   return (
     <>
       <Header />
-      <div className="container-fluid banner">
+      <div className="container-fluid banner1">
         <div className="container">
           <div className="row align-items-center txt-left">
             <div className="col-lg-6">
@@ -214,14 +215,18 @@ function Trips() {
             <div className="h4 text-primary">Destination</div>
             <div className="h6 text-danger ">Price</div>
             <div className="me-4">
+              <div className="text-warning">Silver Package</div>
+
               <input
                 type="checkbox"
                 value="10000/20000"
                 onChange={handleCheckbox}
               />
+
               <label className="ms-2"> 10000 to 20000</label>
             </div>
             <div className="mt-2 me-4">
+              <div className="text-warning">Gold Package</div>
               <input
                 type="checkbox"
                 value="30000/40000"
@@ -230,6 +235,7 @@ function Trips() {
               <label className="ms-2"> 30000 to 40000</label>
             </div>
             <div className="mt-2 me-4">
+              <div className="text-warning">Platinum Package</div>
               <input
                 type="checkbox"
                 value="50000/80000"
@@ -241,7 +247,7 @@ function Trips() {
           <div className="col-10  d-flex  flex-wrap gap-5">
             {console.log("=-=-==-=-=-=-=-data=-=-=-=-=-=-=-=-=-", filter)}
             {checked && filter.length
-              ? filter.map((items: any) => (
+              ? filter.map((items: Package) => (
                   <div className=" mt-5 card">
                     <div className="h6 text-start">visa+flexi-package</div>
                     <div className="h4 text-start">Discover {items.name}</div>
@@ -297,12 +303,12 @@ function Trips() {
                       <span>{items.name}</span>
                       <Button
                         title="Book now"
-                        onClick={() => navigate(`/payment/${items.id}`)}
+                        onClick={() => navigate(`/view/${items.id}`)}
                       />
                     </div>
                   </div>
                 ))
-              : packageData.map((items: any) => (
+              : packageData.map((items: Package) => (
                   <div className=" mt-5 card">
                     <div className="h6 text-start">visa+flexi-package</div>
                     <div className="h4 text-start">Discover {items.name}</div>
@@ -357,7 +363,7 @@ function Trips() {
                       <span className="text-dark h4 mb-0">₹ {items.price}</span>
                       <Button
                         title="Book now"
-                        onClick={() => navigate(`/payment/${items.id}`)}
+                        onClick={() => navigate(`/view/${items.id}`)}
                       />
                     </div>
                   </div>
@@ -369,7 +375,7 @@ function Trips() {
         <div className="text-white mt-2">About Us</div>
         <div className="text-white h4 mt-2">Explore world with us</div>
         <div className="text-white mt-2">
-          MakeMyTrip.com, India's leading online travel company, has a profound
+          Voyaging, India's leading online travel company, has a profound
           understanding of Indian consumers travel needs and preferences. It
           offers a wide range of holiday packages in India and across the world,
           catering to various segments of travellers. While the dynamic or

@@ -2,12 +2,14 @@ import { getApi, postApi } from "../../Services/Http/Services";
 import { Dispatch } from "redux";
 import { Endpoint } from "../../Services/Http/Endpoint";
 import axios from "axios";
+import { Trips } from "../../Pages/Interface/Interface";
+
 export const TRIP_NEW_USER_ = "TRIP_NEW_USER_";
 export const TRIP_NEW_COUNTRY_ = "TRIP_NEW_COUNTRY_";
 export const TRIP_NEW_PACKAGE_ = "TRIP_NEW_PACKAGE_";
 
 export const getTripAction = () => async (dispatch: any) => {
-  var config: any = {
+  var config: Trips = {
     method: "get",
     url: `${process.env.REACT_APP_BASE_URL}/reviews`,
   };
@@ -19,7 +21,7 @@ export const getTripAction = () => async (dispatch: any) => {
   }
 };
 export const getCountryAction = () => async (dispatch: any) => {
-  var config: any = {
+  var config: Trips = {
     method: "get",
     url: `${process.env.REACT_APP_BASE_URL}/country`,
   };
@@ -31,7 +33,7 @@ export const getCountryAction = () => async (dispatch: any) => {
   }
 };
 export const getPackagesAction = () => async (dispatch: any) => {
-  var config: any = {
+  var config: Trips = {
     method: "get",
     url: `${process.env.REACT_APP_BASE_URL}/packages`,
   };

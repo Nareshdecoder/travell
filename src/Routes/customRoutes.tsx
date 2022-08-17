@@ -6,10 +6,13 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import About from "../Components/Pages/About/About";
 import Home from "../Components/Pages/Home/Home";
 import LoginForm from "../Components/Pages/Login/Login";
-import Payment from "../Components/Payment/Payment";
-import Success from "../Components/Success/Success";
-import Tour from "../Components/Tour/Tour";
-import Trips from "../Components/Trips/Trips";
+import Payment from "../Components/Pages/Payment/Payment";
+import RegiusterForm from "../Components/Pages/Regisrter/Register";
+
+import Success from "../Components/Pages/Success/Success";
+import Tour from "../Components/Pages/Tour/Tour";
+import Trips from "../Components/Pages/Trips/Trips";
+import View from "../Components/Pages/View/View";
 
 import {
   getFromSession,
@@ -33,7 +36,7 @@ const CustomRoutes = () => {
   }, []);
   const sessionData = (data: any) => {
     setLogged(data);
-    console.log("l");
+
     saveToSession("loggedData", data);
     navigate("/home");
   };
@@ -57,7 +60,7 @@ const CustomRoutes = () => {
         path="*"
         element={<LoginForm handleLogin={(data: any) => setLogged(data)} />}
       />
-
+      {/* <Route path="/register" element={<RegiusterForm />} /> */}
       {(logged || loggedData) && (
         <>
           <Route path="/home" element={<Home />} />
@@ -66,6 +69,7 @@ const CustomRoutes = () => {
           <Route path="/trips" element={<Trips />} />
           <Route path="/payment/:id" element={<Payment />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/view/:id" element={<View />} />
         </>
       )}
     </Routes>

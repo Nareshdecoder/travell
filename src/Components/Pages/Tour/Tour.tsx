@@ -1,19 +1,17 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import { Button } from "../Core";
-import Header from "../header/Hearder";
-import wallmac from "../../Assets/Images/wallmac.jpg";
-import nature from "../../Assets/Images/nature.jpg";
-import wallpic from "../../Assets/Images/wallpic.jpg";
-import Footer from "../Footer/Footer";
+
+import Header from "../../header/Hearder";
+import wallmac from "../../../Assets/Images/wallmac.jpg";
+import nature from "../../../Assets/Images/nature.jpg";
+import wallpic from "../../../Assets/Images/wallpic.jpg";
+import Footer from "../../Footer/Footer";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Item } from "../Interface/Interface";
 
 function Tour() {
-  let location = window.location.href;
-
   const { id } = useParams();
-  console.log("location", id);
   let countryData = useSelector(
     (state: any) => state.TripReducer?.countryResponse
   );
@@ -58,32 +56,14 @@ function Tour() {
         " It is an island country in the southwestern Pacific Ocean. It consists of two main landmasses—the North Island and the South Island —and over 700 smaller islands. It is the sixth-largest island country by area, covering 268,021 square kilometres.",
     },
   ];
-  const filter = countryData.filter((countryData: any) => countryData.id == id);
+  const filter = countryData.filter(
+    (countryData: Item) => countryData.id == id
+  );
   console.log("first", filter);
   return (
     <>
       <Header />
-      <div className="container-fluid banners">
-        <div className="container">
-          <div className="row align-items-center txt-left">
-            <div className="col-12 justify-content-center d-flex">
-              {filter.map((itemns: any) => (
-                <div>
-                  <div className="h1 text-white me-5">
-                    About Your Dream Place
-                  </div>
-                  <div className="h1 text-orange ms-5 mt-5 ">
-                    {" "}
-                    {itemns.name}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="col-lg-6"></div>
-          </div>
-        </div>
-      </div>
-      <div className="mt-5">
+      <div>
         <Carousel>
           <Carousel.Item>
             <img className="d-block w-100" src={nature} alt="First slide" />
@@ -98,7 +78,7 @@ function Tour() {
       </div>
       <div className="container">
         <div className="row ">
-          {filter.map((items: any) => (
+          {filter.map((items: Item) => (
             <div className="col-4 bg-blue mt-6">
               <div className="mt-3">
                 <div className="h5 mt-5 text-dark">Destination</div>
@@ -123,14 +103,15 @@ function Tour() {
             <div className="">
               <div className="text-primary ">About this place</div>
               <div className="text-dark h4">Explore world with us</div>
-              {filter.map((data: any) => (
-                <div>
-                  <div className="text-brandcolor3 mt-2">
-                    {data.description}
-                    {console.log("datawhy", data.Why)}
+              {filter.map((data: Item) => (
+                <>
+                  <div>
+                    <div className="text-brandcolor3 mt-2">
+                      {data.description}
+                    </div>
+                    <div className="text-brandcolor3 mt-5">{data.Why}</div>
                   </div>
-                  <div className="text-brandcolor3 mt-5">{data.Why}</div>
-                </div>
+                </>
               ))}
             </div>
           </div>
@@ -139,7 +120,7 @@ function Tour() {
 
       <div className="container">
         <div className="row">
-          <div className="text-dark h1 mt-4">Galery</div>
+          <div className="text-dark h1 mt-4">Gallery</div>
           <div className="col p-5">
             <div className="d-flex flex-wrap w-100 justify-content-between">
               <div className=" w-33 trp-img"></div>
@@ -157,7 +138,7 @@ function Tour() {
         <div className="text-white mt-2">About Us</div>
         <div className="text-white h4 mt-2">Explore world with us</div>
         <div className="text-white mt-2">
-          MakeMyTrip.com, India's leading online travel company, has a profound
+          Voyaging, India's leading online travel company, has a profound
           understanding of Indian consumers travel needs and preferences. It
           offers a wide range of holiday packages in India and across the world,
           catering to various segments of travellers. While the dynamic or

@@ -78,7 +78,7 @@ function About() {
   return (
     <>
       <Header />
-      <div className="container-fluid banner">
+      <div className="container-fluid banners">
         <div className="container">
           <div className="row align-items-center txt-left">
             <div className="col-lg-6">
@@ -175,10 +175,6 @@ function About() {
                       <div className="d-flex mt-3 w-33">
                         <div className="img-fluid image-width ">
                           {data.image}
-                          {/* <img
-                            src={transport}
-                            className="img-fluid image-width"
-                          /> */}
                         </div>
                         <div className="ms-4 text-start">
                           <div className="text-danger">{data.title}</div>
@@ -278,8 +274,9 @@ function About() {
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>How to book trip</Accordion.Header>
                       <Accordion.Body>
-                        Please check www.voyaging.com and go to trip and book
-                        your fav place.
+                        Please check&nbsp;
+                        <a className="text-primary">www.voyaging.com</a>
+                        &nbsp;and go to trip and book your fav place.
                       </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">

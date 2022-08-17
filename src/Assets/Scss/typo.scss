@@ -96,6 +96,14 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.banner1 {
+  width: 100%;
+  height: 500px;
+  background-image: url(../Images/united.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .txt-left {
   height: 500px;
   text-align: left;
@@ -232,7 +240,10 @@
     z-index: 1;
   }
 }
-
+.active {
+  color: #3a6ce0 !important;
+  border-bottom: 2px solid #3a6ce0;
+}
 .trp-img2 {
   width: 32%;
   height: 300px;
@@ -325,4 +336,28 @@
 }
 .h100vh {
   height: 100vh;
+}
+.Caraoosal {
+  height: 300px;
+  width: 100%;
+}
+.Caraoosal_fit {
+  height: 146px;
+  width: 100%;
+}
+.table-col {
+  height: 50px;
+  width: 100%;
+}
+.card_prize {
+  background-color: #e8e8e8f5;
+  border: 1px solid #d4d1d1;
+  padding: 10px;
+  height: 200px;
+}
+.prizeout {
+  text-decoration: line-through;
+
+  margin-bottom: 0;
+  color: #808080b5;
 }

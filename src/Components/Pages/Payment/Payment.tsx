@@ -6,15 +6,20 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
-import { iteratorSymbol } from "immer/dist/internal";
+
+import { Payments } from "../Interface/Interface";
 function Payment() {
   let navigate = useNavigate();
-  interface Window {
-    example: any;
-  }
+
   const { id } = useParams();
   console.log("locationssss", id);
-  const [values, setValues] = useState({});
+  let initial = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    adhar: "",
+  };
+  const [values, setValues] = useState<Payments>(initial);
   const [amount, setAmount] = useState<any>("");
   const [pay, setPay] = useState(false);
   const [minAmount, setMinAmount] = useState<any>("");
@@ -22,10 +27,8 @@ function Payment() {
     (state: any) => state.TripReducer?.pakagesResponse
   );
   console.log("packageDatadata", packageData);
-  const handleForm = () => {
-    setPay(true);
-  };
-  const validate = (values: any) => {
+
+  const validate = () => {
     const errors = {
       firstName: "",
       lastName: "",
@@ -58,9 +61,7 @@ function Payment() {
       errors.adhar = "Invalid adhar number";
     }
     if (formik) {
-      let PayValid = Object.values(formik.values).filter(
-        (value: any) => value == ""
-      );
+      let PayValid = Object.values(values).filter((value: any) => value == "");
       if (PayValid.length == 0) {
         setPay(true);
       }
@@ -75,6 +76,7 @@ function Payment() {
       adhar: "",
     },
     validate,
+
     onSubmit: (values) => {},
   });
   const notify = () => toast("Please enter the Amount!");
@@ -113,8 +115,8 @@ function Payment() {
     }
   };
   const handleChange = (event: any) => {
-    setValues((prevValues) => ({
-      ...prevValues,
+    setValues((values) => ({
+      ...values,
       // we use the name to tell Formik which key of `values` to update
       [event.target.name]: event.target.value,
     }));
@@ -138,7 +140,7 @@ function Payment() {
   return (
     <div>
       <div className="container-fluid p-0">
-        <div className="bg-brandcolor3 text-white mt-2 p-5 h3">
+        <div className="bg-brandcolor3 text-dark mt-2 p-5 h3">
           <div> Payment Page</div>
           <div className=" mt-3">Destination :{minAmount.name}</div>
         </div>
@@ -154,8 +156,9 @@ function Payment() {
                 id="firstName"
                 name="firstName"
                 type="text"
-                onChange={formik.handleChange}
-                value={formik.values.firstName}
+                placeholder="Enter FirstName"
+                onChange={handleChange}
+                value={values.firstName}
                 onBlur={formik.handleBlur}
               />
               {formik.errors.firstName ? (
@@ -171,9 +174,10 @@ function Payment() {
                 id="lastName"
                 name="lastName"
                 type="text"
-                onChange={formik.handleChange}
+                placeholder="Enter LastName"
+                onChange={handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.lastName}
+                value={values.lastName}
               />
               {formik.errors.lastName ? (
                 <div className="text-danger formik">
@@ -189,9 +193,10 @@ function Payment() {
                 id="email"
                 name="email"
                 type="email"
-                onChange={formik.handleChange}
+                placeholder="Enter Email"
+                onChange={handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.email}
+                value={values.email}
               />
               {formik.errors.email ? (
                 <div className="text-danger formik">{formik.errors.email}</div>
@@ -204,9 +209,10 @@ function Payment() {
                 id="adhar"
                 name="adhar"
                 type="text"
-                onChange={formik.handleChange}
+                placeholder="Exnter Number as Aadhar Format"
+                onChange={handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.adhar}
+                value={values.adhar}
               />
               {formik.errors.adhar ? (
                 <div className="text-danger formik">{formik.errors.adhar}</div>
@@ -227,6 +233,7 @@ function Payment() {
             </div>
           </form>
         </div>
+
         {pay && (
           <div className="bg-brandcolor3 mt-5 container-fluid p-0 h-100">
             <div className="h4 p-3">Bill desk</div>
@@ -241,7 +248,7 @@ function Payment() {
             />
             <br />
             <br />
-            <Button onClick={handleSubmit} className="mb-5">
+            <Button onClick={handleSubmit} className="mb-5 ms-5">
               Procced to pay
             </Button>
             <ToastContainer />

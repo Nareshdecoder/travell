@@ -9,10 +9,11 @@ import passport4 from "../../../Assets/Images/passport4.svg";
 import passport3 from "../../../Assets/Images/passport3.svg";
 import Footer from "../../Footer/Footer";
 import Button from "../../Core/S4-button/Button";
-import { isTemplateSpan } from "typescript";
+
 import { getCountryAction, getTripAction } from "../../Redux/Action/tripAction";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Item, Review, Trips } from "../Interface/Interface";
 function Home() {
   let navigate = useNavigate();
   const dispatch: any = useDispatch();
@@ -164,9 +165,10 @@ function Home() {
       <div className="container">
         <div className="row">
           <div className="col p-5">
+            <div className="text-dark h3">Click to See Your Package</div>
             <div className="d-flex flex-wrap w-100 justify-content-between ">
               <div className="d-flex flex-wrap justify-content-between w-100  ">
-                {countryData?.map((data: any) => (
+                {countryData?.map((data: Item) => (
                   <div
                     className=" w-33 trp-img mt-4"
                     onClick={() => navigate("/tour/" + data.id)}
@@ -203,7 +205,7 @@ function Home() {
               )}
 
               {customerReview &&
-                reviewData?.data.map((items: any) => (
+                reviewData?.data.map((items: Review) => (
                   <div className="customPadding  mt-3 TestimonialBorder position-relative">
                     <p className="testimonialTitle text-white">{items.name}</p>
                     <h5>{items.email}</h5>
@@ -242,7 +244,7 @@ function Home() {
         <div className="text-white mt-4">About Us</div>
         <div className="text-white h4 mt-2">Explore world with us</div>
         <div className="text-white mt-2">
-          MakeMyTrip.com, India's leading online travel company, has a profound
+          Voyaging,India's leading online travel company, has a profound
           understanding of Indian consumers travel needs and preferences. It
           offers a wide range of holiday packages in India and across the world,
           catering to various segments of travellers. While the dynamic or
